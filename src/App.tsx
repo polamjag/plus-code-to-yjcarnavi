@@ -56,11 +56,11 @@ function App() {
 
   return (
     <>
-      <VStack marginTop="4">
+      <VStack justify="center" minH="100svh">
         <Container>
-          <Heading>Plus Codes to Yahoo! カーナビ</Heading>
+          <Heading fontSize="2xl">Plus Code to Yahoo! カーナビ</Heading>
         </Container>
-        <Container marginTop="2">
+        <Container marginTop="3">
           <Input
             type="text"
             value={plusCodeInput}
@@ -78,13 +78,13 @@ function App() {
             Yahoo! カーナビ で開く
           </Button>
         </Container>
-        {yjcarnaviUrl && (
-          <Container>
-            <Text fontSize="xs" color="gray">
-              {yjcarnaviUrl} を開きます
-            </Text>
-          </Container>
-        )}
+        <Container>
+          <Text fontSize="xs" color="gray" minH="3em">
+            {yjcarnaviUrl
+              ? `${yjcarnaviUrl} を開きます`
+              : "Google マップのアプリでコピーした Plus Code を入力してください (日本国内限定)"}
+          </Text>
+        </Container>
         <Container marginTop="4">
           <UnorderedList fontSize="sm">
             <ListItem>
