@@ -75,7 +75,7 @@ function App() {
             isDisabled={!yjcarnaviUrl}
             colorScheme="red"
           >
-            Yahoo! カーナビ で開く
+            Yahoo! カーナビでルート検索する
           </Button>
         </Container>
         <Container>
