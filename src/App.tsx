@@ -1,6 +1,14 @@
 import { useState } from "react";
 import "./App.css";
 import OpenLocationCode from "open-location-code-typescript";
+import {
+  Button,
+  Container,
+  Heading,
+  Input,
+  Text,
+  VStack,
+} from "@chakra-ui/react";
 
 const queryGsi = async (address: string) => {
   const res = await fetch(
@@ -46,17 +54,34 @@ function App() {
 
   return (
     <>
-    <h1>Plus Codes to Yahoo! カーナビ</h1>
-      <input
-        type="text"
-        value={plusCodeInput}
-        onChange={(e) => onSetPlusCodeInput(e.target.value)}
-      />
-      <div>
-        <a href={yjcarnaviUrl}>Yahoo! カーナビ で開く</a>
-        <br />
-        <small>{yjcarnaviUrl}</small>
-      </div>
+      <VStack>
+        <Container>
+          <Heading>Plus Codes to Yahoo! カーナビ</Heading>
+        </Container>
+        <Container>
+          <Input
+            type="text"
+            value={plusCodeInput}
+            onChange={(e) => onSetPlusCodeInput(e.target.value)}
+            placeholder="MG6P+73 中之条町、群馬県"
+          />
+        </Container>
+        <Container>
+          <Button
+            href={yjcarnaviUrl}
+            as="a"
+            isDisabled={!yjcarnaviUrl}
+            colorScheme="red"
+          >
+            Yahoo! カーナビ で開く
+          </Button>
+        </Container>
+        {yjcarnaviUrl && (
+          <Container>
+            <Text fontSize="xs">{yjcarnaviUrl} を開きます</Text>
+          </Container>
+        )}
+      </VStack>
     </>
   );
 }
