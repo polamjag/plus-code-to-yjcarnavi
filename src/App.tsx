@@ -5,7 +5,10 @@ import {
   Container,
   Heading,
   Input,
+  Link,
+  ListItem,
   Text,
+  UnorderedList,
   VStack,
 } from "@chakra-ui/react";
 
@@ -53,11 +56,11 @@ function App() {
 
   return (
     <>
-      <VStack>
+      <VStack marginTop="4">
         <Container>
           <Heading>Plus Codes to Yahoo! カーナビ</Heading>
         </Container>
-        <Container>
+        <Container marginTop="2">
           <Input
             type="text"
             value={plusCodeInput}
@@ -77,9 +80,24 @@ function App() {
         </Container>
         {yjcarnaviUrl && (
           <Container>
-            <Text fontSize="xs" color="gray">{yjcarnaviUrl} を開きます</Text>
+            <Text fontSize="xs" color="gray">
+              {yjcarnaviUrl} を開きます
+            </Text>
           </Container>
         )}
+        <Container marginTop="4">
+          <UnorderedList fontSize="sm">
+            <ListItem>
+              <Link
+                href="https://support.google.com/maps/answer/7047426?hl=ja"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Plus Code について (Google マップのヘルプ)
+              </Link>
+            </ListItem>
+          </UnorderedList>
+        </Container>
       </VStack>
     </>
   );
