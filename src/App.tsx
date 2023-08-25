@@ -78,7 +78,7 @@ function App() {
         </Container>
         {yjcarnaviUrl && (
           <Container>
-            <Text fontSize="xs">{yjcarnaviUrl} を開きます</Text>
+            <Text fontSize="xs" color="gray">{yjcarnaviUrl} を開きます</Text>
           </Container>
         )}
       </VStack>
