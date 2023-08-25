@@ -99,7 +99,7 @@ function App() {
         <Container>
           <Text fontSize="xs" color="gray" minH="3em">
             {humanReadablePointInfo
-              ? `${humanReadablePointInfo} を開きます`
+              ? `${humanReadablePointInfo} への経路を表示します`
               : "Google マップのアプリでコピーした Plus Code を入力してください (日本国内の地点のみ動作します)"}
           </Text>
         </Container>
