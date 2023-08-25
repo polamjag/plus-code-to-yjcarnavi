@@ -32,10 +32,10 @@ const splitLocalPlusCode = (localPlusCode: string) => {
 const yjcarnaviUrlFromPlusCode = async (plusCode: string) => {
   const { localPlusCode, address } = splitLocalPlusCode(plusCode);
   if (!localPlusCode || !address) {
-    return { url: undefined, unsafeButHumanReadableUrl: undefined };
+    return {};
   }
   if (!OpenLocationCode.isValid(localPlusCode)) {
-    return { url: undefined, unsafeButHumanReadableUrl: undefined };
+    return {};
   }
   const base = await queryGsi(address);
 
