@@ -6,11 +6,12 @@ import {
   Heading,
   Input,
   Link,
+  List,
   ListItem,
   Text,
-  UnorderedList,
   VStack,
 } from "@chakra-ui/react";
+import { ExternalLinkIcon, InfoIcon } from "@chakra-ui/icons";
 
 const queryGsi = async (address: string) => {
   const res = await fetch(
@@ -74,6 +75,7 @@ function App() {
             as="a"
             isDisabled={!yjcarnaviUrl}
             colorScheme="red"
+            rightIcon={<ExternalLinkIcon />}
           >
             Yahoo! カーナビでルート検索する
           </Button>
@@ -82,21 +84,46 @@ function App() {
           <Text fontSize="xs" color="gray" minH="3em">
             {yjcarnaviUrl
               ? `${yjcarnaviUrl} を開きます`
-              : "Google マップのアプリでコピーした Plus Code を入力してください (日本国内限定)"}
+              : "Google マップのアプリでコピーした Plus Code を入力してください (日本国内の地点のみ動作します)"}
           </Text>
         </Container>
         <Container marginTop="4">
-          <UnorderedList fontSize="sm">
+          <List fontSize="sm">
             <ListItem>
-              <Link
+              <Button
+                as="a"
                 href="https://support.google.com/maps/answer/7047426?hl=ja"
+                variant="link"
+                leftIcon={<InfoIcon />}
                 target="_blank"
                 rel="noopener noreferrer"
+                color="gray"
+                fontSize="xs"
               >
                 Plus Code について (Google マップのヘルプ)
-              </Link>
+              </Button>
             </ListItem>
-          </UnorderedList>
+            <ListItem></ListItem>
+            <ListItem marginTop="1.5">
+              <Text color="grey" fontSize="xs">
+                このサイトは、Plus Code の地名部分の検索に国土地理院の地名検索
+                API を利用しています。また、Yahoo!
+                カーナビとは無関係な非公式なサービスです。
+                <Link
+                  href="https://github.com/polamjag/plus-code-to-yjcarnavi"
+                  variant="link"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  color="gray"
+                  fontSize="xs"
+                  fontWeight="normal"
+                  textDecoration="underline"
+                >
+                  このサイトについて
+                </Link>
+              </Text>
+            </ListItem>
+          </List>
         </Container>
       </VStack>
     </>
