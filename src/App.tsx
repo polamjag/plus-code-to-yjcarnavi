@@ -76,6 +76,7 @@ function App() {
             isDisabled={!yjcarnaviUrl}
             colorScheme="red"
             rightIcon={<ExternalLinkIcon />}
+            pointerEvents={yjcarnaviUrl ? "auto" : "none"}
           >
             Yahoo! カーナビでルート検索する
           </Button>
