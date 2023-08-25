@@ -108,7 +108,7 @@ function App() {
               <Text color="grey" fontSize="xs">
                 このサイトは、Plus Code の地名部分の検索に国土地理院の地名検索
                 API を利用しています。また、Yahoo!
-                カーナビとは無関係な非公式なサービスです。
+                カーナビとは無関係な非公式サービスです。
                 <Link
                   href="https://github.com/polamjag/plus-code-to-yjcarnavi"
                   variant="link"
