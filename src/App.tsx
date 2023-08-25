@@ -51,22 +51,23 @@ const yjcarnaviUrlFromPlusCode = async (plusCode: string) => {
     )}&lon=${encodeURIComponent(longitudeCenter)}&name=${encodeURIComponent(
       plusCode
     )}`,
-    unsafeButHumanReadableUrl: `yjcarnavi://navi/select?lat=${latitudeCenter}&lon=${longitudeCenter}&name=${plusCode}`,
+    lat: latitudeCenter,
+    lon: longitudeCenter,
   };
 };
 
 function App() {
   const [plusCodeInput, setPlusCodeInput] = useState<string>("");
   const [yjcarnaviUrl, setYjcarnaviUrl] = useState<string>("");
-  const [humanReadableUrl, setHumanReadableUrl] = useState<string>("");
+  const [humanReadablePointInfo, setHumanReadablePointInfo] = useState<string>("");
 
   const onSetPlusCodeInput = async (plusCode: string) => {
     setPlusCodeInput(plusCode);
-    const { url, unsafeButHumanReadableUrl } = await yjcarnaviUrlFromPlusCode(
+    const { url, lat, lon } = await yjcarnaviUrlFromPlusCode(
       plusCode
     );
     setYjcarnaviUrl(url ?? "");
-    setHumanReadableUrl(unsafeButHumanReadableUrl ?? "");
+    setHumanReadablePointInfo((lat && lon) ? `${lat}, ${lon}` : "");
   };
 
   return (
@@ -97,8 +98,8 @@ function App() {
         </Container>
         <Container>
           <Text fontSize="xs" color="gray" minH="3em">
-            {humanReadableUrl
-              ? `${humanReadableUrl} を開きます`
+            {humanReadablePointInfo
+              ? `${humanReadablePointInfo} を開きます`
               : "Google マップのアプリでコピーした Plus Code を入力してください (日本国内の地点のみ動作します)"}
           </Text>
         </Container>
