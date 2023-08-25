@@ -46,6 +46,7 @@ function App() {
 
   return (
     <>
+    <h1>Plus Codes to Yahoo! カーナビ</h1>
       <input
         type="text"
         value={plusCodeInput}
