@@ -32,29 +32,41 @@ const splitLocalPlusCode = (localPlusCode: string) => {
 const yjcarnaviUrlFromPlusCode = async (plusCode: string) => {
   const { localPlusCode, address } = splitLocalPlusCode(plusCode);
   if (!localPlusCode || !address) {
-    return "";
+    return { url: undefined, unsafeButHumanReadableUrl: undefined };
   }
   if (!OpenLocationCode.isValid(localPlusCode)) {
-    return "";
+    return { url: undefined, unsafeButHumanReadableUrl: undefined };
   }
   const base = await queryGsi(address);
 
   const { latitudeCenter, longitudeCenter } = OpenLocationCode.decode(
     OpenLocationCode.recoverNearest(localPlusCode, base.lat, base.lon)
   );
+
   // https://map.yahoo.co.jp/blog/archives/20150202_carnavischeme.html
-  return `yjcarnavi://navi/select?lat=${encodeURIComponent(
-    latitudeCenter
-  )}&lon=${encodeURIComponent(longitudeCenter)}`;
+
+  return {
+    url: `yjcarnavi://navi/select?lat=${encodeURIComponent(
+      latitudeCenter
+    )}&lon=${encodeURIComponent(longitudeCenter)}&name=${encodeURIComponent(
+      plusCode
+    )}`,
+    unsafeButHumanReadableUrl: `yjcarnavi://navi/select?lat=${latitudeCenter}&lon=${longitudeCenter}&name=${plusCode}`,
+  };
 };
 
 function App() {
   const [plusCodeInput, setPlusCodeInput] = useState<string>("");
   const [yjcarnaviUrl, setYjcarnaviUrl] = useState<string>("");
+  const [humanReadableUrl, setHumanReadableUrl] = useState<string>("");
 
   const onSetPlusCodeInput = async (plusCode: string) => {
     setPlusCodeInput(plusCode);
-    setYjcarnaviUrl(await yjcarnaviUrlFromPlusCode(plusCode));
+    const { url, unsafeButHumanReadableUrl } = await yjcarnaviUrlFromPlusCode(
+      plusCode
+    );
+    setYjcarnaviUrl(url ?? "");
+    setHumanReadableUrl(unsafeButHumanReadableUrl ?? "");
   };
 
   return (
@@ -85,8 +97,8 @@ function App() {
         </Container>
         <Container>
           <Text fontSize="xs" color="gray" minH="3em">
-            {yjcarnaviUrl
-              ? `${yjcarnaviUrl} を開きます`
+            {humanReadableUrl
+              ? `${humanReadableUrl} を開きます`
               : "Google マップのアプリでコピーした Plus Code を入力してください (日本国内の地点のみ動作します)"}
           </Text>
         </Container>
