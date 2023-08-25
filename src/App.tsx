@@ -1,5 +1,4 @@
 import { useState } from "react";
-import "./App.css";
 import OpenLocationCode from "open-location-code-typescript";
 import {
   Button,
