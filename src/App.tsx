@@ -43,7 +43,7 @@ const yjcarnaviUrlFromPlusCode = async (plusCode: string) => {
     OpenLocationCode.recoverNearest(localPlusCode, base.lat, base.lon)
   );
   // https://map.yahoo.co.jp/blog/archives/20150202_carnavischeme.html
-  return `yjcarnavi://navi/select?lat=${latitudeCenter}&lon=${longitudeCenter}`;
+  return `yjcarnavi://navi/select?lat=${encodeURIComponent(latitudeCenter)}&lon=${encodeURIComponent(longitudeCenter)}`;
 };
 
 function App() {
