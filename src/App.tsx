@@ -43,7 +43,9 @@ const yjcarnaviUrlFromPlusCode = async (plusCode: string) => {
     OpenLocationCode.recoverNearest(localPlusCode, base.lat, base.lon)
   );
   // https://map.yahoo.co.jp/blog/archives/20150202_carnavischeme.html
-  return `yjcarnavi://navi/select?lat=${encodeURIComponent(latitudeCenter)}&lon=${encodeURIComponent(longitudeCenter)}`;
+  return `yjcarnavi://navi/select?lat=${encodeURIComponent(
+    latitudeCenter
+  )}&lon=${encodeURIComponent(longitudeCenter)}`;
 };
 
 function App() {
@@ -107,9 +109,10 @@ function App() {
             <ListItem></ListItem>
             <ListItem marginTop="1.5">
               <Text color="grey" fontSize="xs">
-                このサイトは、Plus Code の地名部分の検索に国土地理院の地名検索
-                API を利用しています。また、Yahoo!
-                カーナビとは無関係な非公式サービスです。
+                Plus Code の地名部分の検索に国土地理院の地名検索 API
+                を利用しています。
+                <br />
+                Yahoo! カーナビとは無関係な非公式サービスです。
                 <Link
                   href="https://github.com/polamjag/plus-code-to-yjcarnavi"
                   variant="link"
